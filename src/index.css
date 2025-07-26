@@ -1,0 +1,377 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* إضافة الخطوط العربية */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;500;700&display=swap');
+
+/* تعريف نظام التصميم */
+@layer base {
+  :root {
+    /* الألوان الطبية الأساسية */
+    --medical-blue: 221 83% 53%;
+    --healing-green: 142 76% 36%;
+    --emergency-red: 0 84% 60%;
+    --calm-gray: 210 16% 46%;
+    --success-green: 142 76% 36%;
+    --warning-orange: 38 92% 50%;
+    --clean-white: 0 0% 100%;
+    --soft-background: 210 40% 98%;
+
+    /* نظام الألوان الأساسي */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: var(--medical-blue);
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: var(--emergency-red);
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--medical-blue);
+    --success: var(--healing-green);
+    --success-foreground: 355.7 100% 97.3%;
+    --warning: var(--warning-orange);
+    --warning-foreground: 48 96% 89%;
+    --info: 199 89% 48%;
+    --info-foreground: 210 40% 98%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    direction: rtl;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-cairo;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold font-cairo;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  /* تحسينات للموبايل */
+  @media (max-width: 768px) {
+    body {
+      @apply text-sm;
+    }
+
+    h1 { @apply text-2xl; }
+    h2 { @apply text-xl; }
+    h3 { @apply text-lg; }
+    h4 { @apply text-base; }
+    h5 { @apply text-sm; }
+    h6 { @apply text-xs; }
+
+    html, body {
+      @apply overflow-x-hidden;
+    }
+
+    button, a, input, select, textarea {
+      @apply text-base;
+    }
+
+    .container {
+      @apply px-4;
+    }
+  }
+
+  /* الخطوط العربية */
+  .arabic-font {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+  }
+
+  /* اتجاه النص */
+  .rtl {
+    direction: rtl;
+  }
+
+  .ltr {
+    direction: ltr;
+  }
+
+  /* شريط التمرير */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-500;
+  }
+
+  @media (max-width: 768px) {
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+  }
+
+  /* أزرار مخصصة */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn:hover {
+    @apply transform scale-105 shadow-lg;
+  }
+
+  .btn:active {
+    @apply transform scale-95;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary;
+  }
+
+  .btn-primary:hover {
+    @apply shadow-primary/25;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 focus:ring-secondary;
+  }
+
+  .btn-secondary:hover {
+    @apply shadow-secondary/25;
+  }
+
+  .btn-danger {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90 focus:ring-destructive;
+  }
+
+  .btn-danger:hover {
+    @apply shadow-destructive/25;
+  }
+
+  /* بطاقات مخصصة */
+  .card {
+    @apply bg-card text-card-foreground rounded-3xl border shadow-soft transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply shadow-medium transform scale-105;
+  }
+
+  .card-header {
+    @apply p-6 pb-0;
+  }
+
+  .card-content {
+    @apply p-6;
+  }
+
+  .card-title {
+    @apply text-xl font-bold mb-2;
+  }
+
+  /* تدرجات لونية */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent;
+  }
+
+  /* ظلال مخصصة */
+  .shadow-soft {
+    box-shadow: 0 4px 20px -4px hsl(var(--medical-blue) / 0.1);
+  }
+
+  .dark .shadow-soft {
+    box-shadow: 0 4px 20px -4px hsl(var(--medical-blue) / 0.2);
+  }
+
+  /* تحسينات للموبايل */
+  .mobile-padding {
+    @apply px-4 py-6;
+  }
+
+  .mobile-margin {
+    @apply mx-4 my-6;
+  }
+
+  .mobile-text {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-text-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .mobile-text-lg {
+    @apply text-base sm:text-lg;
+  }
+
+  .mobile-grid {
+    @apply grid-cols-1 gap-4;
+  }
+
+  @media (min-width: 640px) {
+    .mobile-grid {
+      @apply grid-cols-2 gap-6;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-grid {
+      @apply grid-cols-3 gap-8;
+    }
+  }
+
+  /* تأثيرات حركية */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+
+  .hover-lift:hover {
+    @apply transform -translate-y-2 shadow-lg;
+  }
+
+  .pulse-animation {
+    @apply animate-pulse-slow;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* ألوان طبية */
+  .medical-blue {
+    @apply text-blue-600;
+  }
+
+  .healing-green {
+    @apply text-green-600;
+  }
+
+  .emergency-red {
+    @apply text-red-600;
+  }
+
+  .calm-gray {
+    @apply text-gray-600;
+  }
+
+  .bg-medical-blue {
+    @apply bg-blue-600;
+  }
+
+  .bg-healing-green {
+    @apply bg-green-600;
+  }
+
+  .bg-emergency-red {
+    @apply bg-red-600;
+  }
+
+  .bg-calm-gray {
+    @apply bg-gray-600;
+  }
+
+  /* جداول طبية */
+  .table-medical {
+    @apply w-full border-collapse bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-soft;
+  }
+
+  .table-medical th {
+    @apply bg-primary text-primary-foreground px-6 py-4 text-right font-bold text-sm;
+  }
+
+  .table-medical td {
+    @apply px-6 py-4 border-t border-border text-sm;
+  }
+
+  .table-medical tr:hover {
+    @apply bg-muted/50;
+  }
+
+  /* نماذج مخصصة */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-xl border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200;
+  }
+
+  .form-input:focus {
+    @apply shadow-lg transform scale-105;
+  }
+
+  /* تنبيهات مخصصة */
+  .alert-success {
+    @apply bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 rounded-xl p-4;
+  }
+
+  .alert-warning {
+    @apply bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-200 rounded-xl p-4;
+  }
+
+  .alert-error {
+    @apply bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 rounded-xl p-4;
+  }
+
+  .alert-info {
+    @apply bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-200 rounded-xl p-4;
+  }
+}
